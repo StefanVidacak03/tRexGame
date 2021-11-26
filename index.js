@@ -1,12 +1,12 @@
-var express = require('express')
-var app = express()
-var path = require('path');
+var express = require('express'),
+    app = express(),
+    port = process.env.PORT || 3000,
+    path = require('path');
 
-app.get('/', function (req, res) {
-    res.sendFile(__dirname + "/views"+ "/"+"index.html");
-   })
+app.use('/public', express.static('public'));
+app.use('/', function (req, res) {
+    res.sendfile(path.join(__dirname + '/views/index.html'));
+});
+app.listen(port);
 
-   const path = require('path')
-app.use('/static', express.static(path.join(__dirname, '/public' +'/'+'css'+'styles.css')))
-
-app.listen(3000)
+console.log('Server started at http://localhost:%s/', port);
