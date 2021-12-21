@@ -12,14 +12,6 @@ let scoreCounter = () => {
   score.innerHTML = `Score: <b>${playerScore}</b>`;
 }
 
-let HighScoreCounter = () => {
-  if(playerScore>highscore){
-    highscore = playerScore;
-    localStorage.setItem('highscore',highscore);
-    Highscore.innerHTML = `Highscore: <b>${localStorage.getItem('highscore')}</b>`;
-  }
-}
-
 function jump() {
   if (dino.classList != "jump") {
     dino.classList.add("jump");
@@ -42,8 +34,7 @@ let isAlive = setInterval(function () {
   // detect collision
   if (cactusLeft < 50 && cactusLeft > 0 && dinoTop >= 140) {
     // collision
-    HighScoreCounter();
-    alert("Game over, highscore is: " + localStorage.getItem('highscore').toString());
+    alert("Kraj igre!");
     clearInterval(interval);
         playerScore = 0;
   }
